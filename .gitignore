@@ -1,6 +1,5 @@
 # Python
 __pycache__/
-testing/__pycache__/
 *.pyc
 *.pyo
 *.pyd
@@ -22,3 +21,5 @@ env/
 # Text Editor/IDE
 .vscode/
 .idea/
+
+.DS_Store
