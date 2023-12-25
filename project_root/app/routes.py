@@ -50,4 +50,31 @@ def convert_to_neg_route():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@api_bp.route('/half', methods=['POST'])
+def half_tone_route():
+    try:
+        file = request.files['image']
+        bytes = file.read()
+
+        half_toned = half_tone(bytes)
+
+        return jsonify({'half_image': half_toned.hex()}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@api_bp.route('/sobel_edge', methods=['POST'])
+def sobel_route():
+    try:
+        file = request.files['image']
+        bytes = file.read()
+
+        sobel_edge = sobel_edge_detection(bytes)
+
+        return jsonify({'sobel_edge_image': sobel_edge.hex()}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 

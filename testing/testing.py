@@ -1,10 +1,12 @@
 """
-Program to send reuqest to the image processing API
+Program to send request to the image processing API
 
 Actions:
     - grayscale: convert the payload image to grayscale
     - resize: resize the image
     - negative: generate negative of the image
+    - half: Half-toning using Floyd and Steinberg algorithm
+    - sobel_edge: Edge detection using Sobel filters
 """
 
 import requests
@@ -53,14 +55,15 @@ def send_request(action: str, image_path: str) -> None:
             f.write(resized_image_bytes)
         print(f"{action} image saved as '{action}.png'")
     else:
-        print(f"Error in the POST request: {response.status_code}")
+        print(f"[LOGS]: Error in the POST request: {response.reason}")
+        print(f"[LOGS]: Error message from server: {response.json().get('error')}")
 
 
 action = 'resize'
 """
 TODO:
     - be able to pass the resize size -> be able to pass other parameters for other functions
-    
+
 """
 send_request(action, image_path)
 
