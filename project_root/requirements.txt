@@ -3,3 +3,4 @@ Pillow
 Flask
 numpy
 gunicorn
+python-dotenv
