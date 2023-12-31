@@ -12,13 +12,17 @@ Actions:
 import requests
 import os
 import binascii
+from dotenv import load_dotenv
 
+load_dotenv()
+
+api_key = os.environ.get('API_KEY')
 ROOT = 'http://127.0.0.1:5000/api/'
 
 image_path = 'testing/resources/woman.png'
 
 
-def send_request(action: str, image_path: str) -> None:
+def send_request(action: str, params: dict, image_path: str) -> None:
     r"""
     Example function to send request to the API with payload image
 
@@ -39,8 +43,9 @@ def send_request(action: str, image_path: str) -> None:
     # Prepare the image file
     files = {'image': (os.path.basename(image_path), open(image_path, 'rb'))}
 
+    
     # Send the POST request
-    response = requests.post(url, files=files)
+    response = requests.post(url, files=files, data=params, headers={'X-API-Key': str(api_key)})
 
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
@@ -59,11 +64,10 @@ def send_request(action: str, image_path: str) -> None:
         print(f"[LOGS]: Error message from server: {response.json().get('error')}")
 
 
-action = 'resize'
-"""
-TODO:
-    - be able to pass the resize size -> be able to pass other parameters for other functions
+action = 'grayscale'
+#passing arguments for functions
+# if calling resize then we can pass the following
+params = {'width': 500, 'height': 300}
 
-"""
-send_request(action, image_path)
+send_request(action, params, image_path)
 
