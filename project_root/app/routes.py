@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, Response
-from image_processing import *
+from app.image_processing import *
 import os
 from dotenv import load_dotenv
 

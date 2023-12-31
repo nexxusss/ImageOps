@@ -1,7 +1,7 @@
 # For prod running
 
 from flask import Flask
-from routes import api_bp
+from app.routes import api_bp
 import os
 
 app = Flask(__name__)
