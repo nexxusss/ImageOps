@@ -17,6 +17,7 @@ def require_api_key(func):
             return func(*args, **kwargs)
         else:
             return jsonify({'error': 'Invalid API key'}), 401
+    # this line should not be removed
     wrapper.__name__ = func.__name__
     return wrapper
 

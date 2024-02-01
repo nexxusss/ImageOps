@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 api_key = os.environ.get('API_KEY')
-ROOT = 'http://127.0.0.1:5000/api/'
+ROOT = 'http://127.0.0.1:8000/api/'
 
 image_path = 'testing/resources/woman.png'
 
@@ -64,10 +64,10 @@ def send_request(action: str, params: dict, image_path: str) -> None:
         print(f"[LOGS]: Error message from server: {response.json().get('error')}")
 
 
-action = 'grayscale'
+action = 'resize'
 #passing arguments for functions
 # if calling resize then we can pass the following
-params = {'width': 500, 'height': 300}
+params = {'width': 600, 'height': 400}
 
 send_request(action, params, image_path)
 
